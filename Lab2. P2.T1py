@@ -1,0 +1,54 @@
+class Product:
+    def __init__(self, price, description, title, width, length, height, quantity):
+        self.price = price
+        self.description = description
+        self.title = title
+        self.width = width
+        self.length = length
+        self.height = height
+        self.quantity = quantity
+
+class Customer:
+
+    def __init__(self, name, surname, patronymic, phone_number):
+        self.name = name
+        self.surname = surname
+        self.patronymic = patronymic
+        self.phone_number = phone_number
+
+    def full_customer_name(self):
+        return self.name + ' ' + self.surname + ' ' + self.patronymic
+
+class Order:
+    __count = 0
+
+    def __init__(self, customer):
+        self.customer = customer
+        self.products = []
+        Order.__count +=1
+
+    def add_product(self, product):
+        self.products.append(product)
+
+    def totall_order_value(self, products):
+        totall_order_value = 0
+        for item in self.products:
+            totall_order_value += item.price
+
+        return totall_order_value
+
+    def create_order(self):
+        print('####### ORDER №', Order.__count, '#######\nCustomer\'s Full name:\n', customer.full_customer_name(),'\n')
+        product_list = ""
+        for item in self.products:
+            product_list += item.title + "\nQuantity: " + str(item.quantity) + "\n" + item.description + "\nSize: "  +  str(item.width) + "X" + str(item.length) + "X" + str(item.height) + "\nPrice:" + str(item.quantity * item.price) + "\n---------------------------\n"
+
+        print(product_list, "\n ORDER VALUE: ", self.totall_order_value(self.products))
+
+product1 = Product(1099, 'iPhone 13 Pro Max', ' Latest iPhone Model', 7,78,160, 1)
+product2 = Product(24, 'Silicone Case', ' Accesorieries for iPhone,', 8,80,163, 2)
+customer = Customer('Danil', 'Lukovnikov', 'Ihorevich', '+380965950220')
+order = Order(customer)
+order.add_product(product1)
+order.add_product(product2)
+order.create_order()
